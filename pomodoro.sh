@@ -18,7 +18,7 @@ set -o nounset                              # Treat unset variables as an error
 # This where we return everything to "normal" 
 stopPomo ()
 {
-  DISPLAY=:0 notify-send -t 1000 -i ~/Pictures/pomodoro.png "Pomodoro Work ends" "Take a break!"
+  DISPLAY=:0 notify-send -t 1000 -i ./pomodoro.png "Pomodoro Work ends" "Take a break!"
   echo "Pomodoro Work ends" "Take a break!"
   purple-remote "jabber:setstatus?status=${statusPrime}&message=${messagePrime}"
   killall play
@@ -36,14 +36,14 @@ messagePrime=$(purple-remote "jabber:getstatusmessage")
 statusPomo=unavailable
 #statusPomo=away
 
-DISPLAY=:0 notify-send -t 1000 -i ~/Pictures/pomodoro.png "New Pomodoro Work starts" "You have 25 minutes to work."
+DISPLAY=:0 notify-send -t 1000 -i ./pomodoro.png "New Pomodoro Work starts" "You have 25 minutes to work."
 # 25 minutes timer
 play -q -n synth 25:00 brown gain ${POMOGAIN}&
 
 i=25
 while (( i>=1 )); do
   while (( i>5 )); do
-    DISPLAY=:0 notify-send -t 1000 -i ~/Pictures/pomodoro.png "Pomodoro Work Status" "You have ${i} minutes to work."
+    DISPLAY=:0 notify-send -t 1000 -i ./pomodoro.png "Pomodoro Work Status" "You have ${i} minutes to work."
     echo "You have ${i} minutes to work."
     purple-remote "jabber:setstatus?status=${statusPomo}&message=${POMOPREMSG}${i}${POMOPOSTMSG}"
     sleep 5$POMOWAITUNITS
@@ -51,7 +51,7 @@ while (( i>=1 )); do
   done
 
   while (( i>0 )); do
-    DISPLAY=:0 notify-send -t 1000 -i ~/Pictures/pomodoro.png "Pomodoro Work Status" "You have ${i} minutes to work."
+    DISPLAY=:0 notify-send -t 1000 -i ./pomodoro.png "Pomodoro Work Status" "You have ${i} minutes to work."
     echo "You have ${i} minutes to work."
     purple-remote "jabber:setstatus?status=${statusPomo}&message=${POMOPREMSG}${i}${POMOPOSTMSG}"
     sleep 1$POMOWAITUNITS
@@ -67,7 +67,7 @@ i=0
 while (( i<5 )); do
 	sleep 1$POMOWAITUNITS
 	i=$(($i+1))
-	DISPLAY=:0 notify-send -t 1000 -i ~/Pictures/pomodoro.png "Pomodoro Rest Status" "You have rested ${i} minutes."
+	DISPLAY=:0 notify-send -t 1000 -i ./pomodoro.png "Pomodoro Rest Status" "You have rested ${i} minutes."
 	echo "You have rested ${i} minutes."
 done
 stopPomo
