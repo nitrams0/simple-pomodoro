@@ -1,0 +1,12 @@
+# White noise levels
+POMOGAIN=-30
+#POMOGAIN=-25
+#POMOGAIN=0
+
+# Message strings for Pidgin
+POMOPREMSG="I am available again in "
+POMOPOSTMSG=" mins"
+
+# These help with accelerated troubleshooting.
+POMOWAITUNITS="m"
+#POMOWAITUNITS="s"
